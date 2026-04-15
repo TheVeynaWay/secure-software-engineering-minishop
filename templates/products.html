@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<h1>Products</h1>
+{% if products %}
+  <ul class="product-list">
+    {% for p in products %}
+      <li class="product-card">
+        <h2>{{ p['name'] }}</h2>
+        <p>{{ p['description'] }}</p>
+        <p><strong>${{ "%.2f"|format(p['price']) }}</strong></p>
+        {% if session.user_id and session.role == 'customer' %}
+          <a href="{{ url_for('order', product_id=p['id']) }}">Order</a>
+        {% elif not session.user_id %}
+          <a href="{{ url_for('login') }}">Login to order</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No products available.</p>
+{% endif %}
+{% endblock %}

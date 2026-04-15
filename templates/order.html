@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Order{% endblock %}
+
+{% block content %}
+<h1>Place Order</h1>
+<div class="product-card">
+  <h2>{{ product['name'] }}</h2>
+  <p>{{ product['description'] }}</p>
+  <p><strong>${{ "%.2f"|format(product['price']) }}</strong></p>
+</div>
+
+<form method="POST">
+  <label>Quantity
+    <input type="number" name="quantity" value="1" min="1" required>
+  </label>
+  <button type="submit">Confirm Order</button>
+</form>
+<a href="{{ url_for('products') }}">Back to products</a>
+{% endblock %}

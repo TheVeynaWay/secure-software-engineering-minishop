@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}All Orders{% endblock %}
+
+{% block content %}
+<h1>All Orders</h1>
+{% if orders %}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Status</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in orders %}
+        <tr>
+          <td>{{ o['id'] }}</td>
+          <td>{{ o['username'] }}</td>
+          <td>{{ o['product_name'] }}</td>
+          <td>{{ o['quantity'] }}</td>
+          <td><span class="status {{ o['status'] }}">{{ o['status'] }}</span></td>
+          <td>
+            <form method="POST"
+                  action="{{ url_for('admin_update_order', order_id=o['id']) }}">
+              <select name="status">
+                {% for s in ['pending', 'shipped', 'delivered', 'cancelled'] %}
+                  <option value="{{ s }}" {% if s == o['status'] %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+              </select>
+              <button type="submit">Update</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No orders yet.</p>
+{% endif %}
+{% endblock %}

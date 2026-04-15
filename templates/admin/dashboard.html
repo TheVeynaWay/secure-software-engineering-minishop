@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<div class="stats">
+  <div class="stat-card">
+    <h2>{{ product_count }}</h2>
+    <p>Products</p>
+    <a href="{{ url_for('admin_products') }}">Manage Products</a>
+  </div>
+  <div class="stat-card">
+    <h2>{{ order_count }}</h2>
+    <p>Orders</p>
+    <a href="{{ url_for('admin_orders') }}">View Orders</a>
+  </div>
+</div>
+{% endblock %}
