@@ -2,6 +2,10 @@
 
 A small Flask + SQLite web application built for Secure Software Engineering Phase 0.
 
+## Demo
+
+[![MiniShop Demo](https://img.youtube.com/vi/8JkdTLKE9UY/0.jpg)](https://youtu.be/8JkdTLKE9UY)
+
 ## Setup
 
 ```bash
